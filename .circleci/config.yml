@@ -7,4 +7,4 @@ jobs:
       - checkout
       - run:
           name: "check if os is ok"
-          command: "uname a"
+          command: "uname -a"
