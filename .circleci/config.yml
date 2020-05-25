@@ -10,7 +10,7 @@ jobs:
           command: "uname -a"
       - run:
           name: "install updates"
-          command: "yum check-update && yum -y update && yum -y upgrade&& yum install sudo -y"
+          command: "yum check-update && yum -y update"
       - run:
           name: "install gcc & cmake "
           command: sudo dnf groupinstall "Development Tools"
