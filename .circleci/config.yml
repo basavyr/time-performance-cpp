@@ -55,9 +55,9 @@ jobs:
       - run:
           name: "makes CXX to the default g++ compiler"
           command: which g++
-      # - run:
-      #     name: creates the build project
-      #     command: "mkdir -p build && cd build && CC=gcc CXX=g++ cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
+      - run:
+          name: creates the build project
+          command: "mkdir -p build && cd build && CC=gcc CXX=g++ cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
   job-3-debian:
     docker:
       - image: debian:latest
