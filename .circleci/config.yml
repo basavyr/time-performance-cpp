@@ -24,7 +24,7 @@ jobs:
           command: "uname -a"
       - run:
           name: "install updates"
-          command: ""apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*""
+          command: "apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
   job-3-debian:
     docker:
       - image: debian:latest
@@ -35,7 +35,7 @@ jobs:
           command: "uname -a"
       - run:
           name: "install updates"
-          command: ""apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*""
+          command: "apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
 
 workflows:
   version: 2.1
