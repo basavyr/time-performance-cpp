@@ -10,7 +10,7 @@ jobs:
           command: "uname -a"
       - run:
           name: "install updates"
-          command: "yum check-update && yum -y update"
+          command: "yum check-update "
       - run:
           name: "install gcc & cmake "
           command: sudo dnf groupinstall "Development Tools"
@@ -42,5 +42,5 @@ workflows:
   pipelines: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
       - job-1-centos
-      - job-2-ubuntu
-      - job-3-debian
+      # - job-2-ubuntu
+      # - job-3-debian
