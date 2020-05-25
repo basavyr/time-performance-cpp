@@ -2,5 +2,5 @@
 
 int main()
 {
-    std::cout << 1 << '\n';
+    auto x = std::make_unique<time_bench::Timer>();
 }

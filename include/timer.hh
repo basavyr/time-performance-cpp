@@ -12,12 +12,14 @@ namespace time_bench
     class Timer
     {
     private:
-        /* data */
+        std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
+
     public:
         Timer(/* args */);
         ~Timer();
+        void MeasureTime();
     };
 
-} // namespace timer
+} // namespace time_bench
 
 #endif // TIMER_HH

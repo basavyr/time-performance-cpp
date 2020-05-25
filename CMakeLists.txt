@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
+SET(CMAKE_CXX_STANDARD 14)
+SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+
 set(myproject "TIME-MEASUREMENT-C++")
 project(my_project)
 
