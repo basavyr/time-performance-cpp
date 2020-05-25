@@ -13,7 +13,7 @@ jobs:
           command: "yum check-update && yum -y update && yum -y upgrade&& yum install sudo -y"
       - run:
           name: "install gcc & cmake "
-          command: "sudo dnf group install "Development Tools""
+          command: sudo dnf groupinstall "Development Tools"
   job-2-ubuntu:
     docker:
       - image: ubuntu:latest
