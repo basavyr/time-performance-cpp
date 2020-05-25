@@ -12,8 +12,11 @@ jobs:
       #     name: "install updates"
       #     command: "yum -y update" ---->fails on official image
       - run:
-          name: "install gcc & cmake "
-          command: dnf groupinstall -y "Development Tools" cmake
+          name: "install gcc "
+          command: dnf groupinstall -y "Development Tools"
+      - run:
+          name: "install cmake "
+          command: yum install -y cmake
   job-2-ubuntu:
     docker:
       - image: ubuntu:latest
@@ -27,7 +30,10 @@ jobs:
           command: "uname -a"
       - run:
           name: "test if envar was properly initialized"
-          command: "echo $DEBIAN_FRONTED"
+          command: "echo $DEBIAN_FRONTEND"
+      - run:
+          name: "test if envar was properly initialized"
+          command: "echo $TZ"
       - run:
           name: "set env vars again"
           command: |
@@ -35,11 +41,17 @@ jobs:
             echo export DEBIAN_FRONTEND=noninteractive >> $BASH_ENV
             source $BASH_ENV
       - run:
+          name: "test if envar was properly initialized"
+          command: "echo $DEBIAN_FRONTEND"
+      - run:
           name: "install updates"
           command: "apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
       - run:
           name: "install gcc and cmake"
-          command: "apt-get install -y tzdata&& apt-get install -y gcc  && apt-get install -y gcc"
+          command: "apt-get install -y tzdata"
+      - run:
+          name: "install gcc and cmake"
+          command: " apt-get install -y gcc  && apt-get install -y cmake"
   job-3-debian:
     docker:
       - image: debian:latest
