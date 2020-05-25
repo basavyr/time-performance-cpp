@@ -8,15 +8,18 @@ jobs:
       - run:
           name: "check if os is ok"
           command: "uname -a"
-      - run:
-          name: "install updates"
-          command: "yum check-update "
+      # - run:
+      #     name: "install updates"
+      #     command: "yum -y update" ---->fails on official image
       - run:
           name: "install gcc & cmake "
           command: sudo dnf groupinstall "Development Tools"
   job-2-ubuntu:
     docker:
       - image: ubuntu:latest
+        environment:
+          - TZ: Europe/Bucharest
+          - DEBIAN_FRONTEND: noninteractive
     steps:
       - checkout
       - run:
@@ -42,5 +45,5 @@ workflows:
   pipelines: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
       - job-1-centos
-      # - job-2-ubuntu
+      - job-2-ubuntu
       # - job-3-debian
