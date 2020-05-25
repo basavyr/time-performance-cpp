@@ -19,7 +19,7 @@ jobs:
           command: yum install -y cmake
       - run:
           name: creates the build project
-          command: "mkdir -p build && cd build && cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
+          command: "mkdir -p build && cd build && CC=gcc CXX=g++ cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
   job-2-ubuntu:
     docker:
       - image: ubuntu:latest
