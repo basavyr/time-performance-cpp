@@ -13,7 +13,7 @@ jobs:
       #     command: "yum -y update" ---->fails on official image
       - run:
           name: "install gcc & cmake "
-          command: sudo dnf groupinstall -y "Development Tools" cmake
+          command: dnf groupinstall -y "Development Tools" cmake
   job-2-ubuntu:
     docker:
       - image: ubuntu:latest
@@ -32,7 +32,7 @@ jobs:
           name: "set env vars again"
           command: |
             echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-            echo 'export DEBIAN_FRONTEND=noninteractive >> $BASH_ENV
+            echo export DEBIAN_FRONTEND=noninteractive >> $BASH_ENV
             source $BASH_ENV
       - run:
           name: "install updates"
