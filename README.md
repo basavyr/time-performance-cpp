@@ -1,4 +1,4 @@
-# Measurng time performance in `C++`
+# Measuring time performance in `C++`
 
 A simple C++ implementation of a time measurement tool, using `std::chrono`  
 
