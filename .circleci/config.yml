@@ -51,10 +51,13 @@ jobs:
           command: "apt-get -y update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
       - run:
           name: "install gcc and cmake"
-          command: "sudo apt-get -y update && sudo apt-get install -y tzdata && sudo apt-get install -y gcc  && apt-get install -y cmake"
-      - run:
-          name: creates the build project
-          command: "mkdir -p build && cd build && CC=gcc CXX=g++ cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
+          command: "sudo apt-get -y update && sudo apt-get install -y tzdata && sudo apt-get install -y g++  && apt-get install -y cmake"
+        - run:
+          name: "makes CXX to the default g++ compiler"
+          command: which g++
+      # - run:
+      #     name: creates the build project
+      #     command: "mkdir -p build && cd build && CC=gcc CXX=g++ cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
   job-3-debian:
     docker:
       - image: debian:latest
@@ -80,6 +83,6 @@ workflows:
   version: 2.1
   pipelines: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
-      - job-1-centos
+      # - job-1-centos
       - job-2-ubuntu
-      - job-3-debian
+      # - job-3-debian
