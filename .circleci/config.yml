@@ -17,6 +17,9 @@ jobs:
       - run:
           name: "install cmake "
           command: yum install -y cmake
+      - run:
+          name: creates the build project
+          command: "mkdir -p build && cd build && cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
   job-2-ubuntu:
     docker:
       - image: ubuntu:latest
@@ -49,17 +52,29 @@ jobs:
       - run:
           name: "install gcc and cmake"
           command: "sudo apt-get -y update && sudo apt-get install -y tzdata && sudo apt-get install -y gcc  && apt-get install -y cmake"
+      - run:
+          name: creates the build project
+          command: "mkdir -p build && cd build && cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
   job-3-debian:
     docker:
       - image: debian:latest
     steps:
       - checkout
       - run:
-          name: "check if os is ok"
-          command: "uname -a"
+          name: Installing SUDO
+          command: "apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
       - run:
-          name: "install updates"
-          command: "sudo apt-get update &&sudo  apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
+          name: Installing GCC
+          command: "apt-get update && apt-get install -y gcc g++"
+      - run:
+          name: Install CMAKE
+          command: "apt-get update && sudo apt-get install -y cmake"
+      - run:
+          name: check cmake and gcc
+          command: "uname -a && cmake --version && gcc --version"
+      - run:
+          name: creates the build project
+          command: "mkdir -p build && cd build && cmake -D CMAKE_INSTALL_PREFIX=../tarball/build ..&&make&&make install"
 
 workflows:
   version: 2.1
@@ -67,4 +82,4 @@ workflows:
     jobs: # and here we list the jobs we are going to run.
       - job-1-centos
       - job-2-ubuntu
-      # - job-3-debian
+      - job-3-debian
